@@ -1,0 +1,22 @@
+<h1>つぶやき一覧</h1>
+
+<%= link_to "新しくつぶやく", new_post_path %>
+
+<div class="posts">
+  <% @posts.each do |post| %>
+    <div class="post">
+      <p><%= post.content %></p>
+
+      <div class="post-actions">
+        <%= link_to "編集", edit_post_path(post) %>
+
+        <%= button_to "削除",
+                      post_path(post),
+                      method: :delete,
+                      form: { data: {
+                        turbo_confirm: "本当に削除しますか？"
+                      } } %>
+      </div>
+    </div>
+  <% end %>
+</div>
